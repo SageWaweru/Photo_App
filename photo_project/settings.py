@@ -93,8 +93,8 @@ WSGI_APPLICATION = 'photo_project.wsgi.application'
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME':'photodb',
-#         'USER':'photouser',
+#         'NAME':'photo2db',
+#         'USER':'galleryuser',
 #         'PASSWORD':config('DATABASE_PASSWORD'),
 #         'HOST':'Localhost',
 #         'PORT':'5432'
