@@ -102,7 +102,7 @@ WSGI_APPLICATION = 'photo_project.wsgi.application'
 # }
 
 DATABASES={
-    'default': dj_database_url.parse("postgresql://sagedb_89dx_user:ri4CUpnYfySR8gT8rlwWz609dQJ8TrbH@dpg-ctucob9u0jms73f5roj0-a.oregon-postgres.render.com/sagedb_89dx")
+    'default': dj_database_url.parse("postgresql://sage_ln3y_user:sSy9KAnUxP7bkBbCGkH1exXZJkUcOPDL@dpg-cu3nvj9u0jms73dmodo0-a.oregon-postgres.render.com/sage_ln3y")
 }
 
 # Password validation

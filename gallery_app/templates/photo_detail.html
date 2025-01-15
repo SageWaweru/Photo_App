@@ -18,13 +18,13 @@
     <div class="d-flex align-items-center mb-4">
         <form action="{% url 'like_photo' photo.id %}" method="post" style="display: inline;">
             {% csrf_token %}
-            <button type="submit" class="btn mr-2 ">❤ Like</button>
+            <button type="submit" class="btn mr-2 ">❤ </button>
         </form>
         <span class="ms-2 me-4">{{ photo.total_likes }} Likes</span>
 
         <form action="{% url 'dislike_photo' photo.id %}" method="post" style="display: inline;">
             {% csrf_token %}
-            <button type="submit" class="btn  mr-2">❌ Dislike</button>
+            <button type="submit" class="btn  mr-2">❌ </button>
         </form>
         <span class="ms-2">{{ photo.total_dislikes }} Dislikes</span>
     </div>
