@@ -15,39 +15,41 @@
     <button type="submit" style="width: 6rem;" class="btn btn-primary">Filter</button>
   </form>
     
-  <div class="mx-auto max-w-7xl flex px-4 py-6 sm:px-6 lg:px-8">
-    <ul class="d-flex flex-wrap gap-4 list-unstyled p-0">
-                {% for photo in photos %}
-        <li class="mb-2 shadow-lg p-4">
-          <img src="{{ photo.uploaded_photo.url }}" alt="{{ photo.title }}" style="width: 800px;" class="h-auto img-fluid mb-4">
-          <h3 class="text-xl font-semibold">{{ photo.title }}</h3>
-          <p class="text-sm text-gray-600">
-            {% for tag in photo.tags.all %}
-              {{ tag.name }}{% if not forloop.last %}, {% endif %}
-            {% endfor %}
-          </p>
-          <div class="d-flex">
-            <form action="{% url 'like_photo' photo.id %}" method="post" style="display: inline;">
-                {% csrf_token %}
-            <button class="btn like-btn mr-2" data-id="{{ photo.id }}">❤</button> 
-            </form>
-            <span class="mt-2" id="like-count-{{ photo.id }}"> {{ photo.total_likes }} Likes</span> 
+  <div class="container py-4">
+    <div class="row gy-4">
+        {% for photo in photos %}
+        <div class="col-12 col-sm-6 col-lg-3">
+            <div class="card shadow">
+                <img src="{{ photo.uploaded_photo.url }}" alt="{{ photo.title }}" class="card-img-top img-fluid">
+                <div class="card-body">
+                    <h5 class="card-title">{{ photo.title }}</h5>
+                    <p class="card-text text-muted">
+                        {% for tag in photo.tags.all %}
+                        {{ tag.name }}{% if not forloop.last %}, {% endif %}
+                        {% endfor %}
+                    </p>
+                    <div class="d-flex ">
+                        <form action="{% url 'like_photo' photo.id %}" method="post" class="me-3">
+                            {% csrf_token %}
+                            <button class="btn b btn-sm" data-id="{{ photo.id }}">❤</button>
+                        </form>
+                        <span id="like-count-{{ photo.id }}" class="me-3">{{ photo.total_likes }} Likes</span>
 
-            <form action="{% url 'dislike_photo' photo.id %}" method="post" style="display: inline;">
-                {% csrf_token %}
-            <button class="btn dislike-btn mr-2 ms-3" data-id="{{ photo.id }}">❌</button>
-            </form>
-            <span class="mt-2" id="dislike-count-{{ photo.id }}">{{ photo.total_dislikes }} Dislikes</span> 
-
+                        <form action="{% url 'dislike_photo' photo.id %}" method="post" class="me-3">
+                            {% csrf_token %}
+                            <button class="btn btn-sm" data-id="{{ photo.id }}">❌</button>
+                        </form>
+                        <span id="dislike-count-{{ photo.id }}">{{ photo.total_dislikes }} Dislikes</span>
+                    </div>
+                    <div class="mt-3">
+                        <a href="{% url 'photo_detail' photo.id %}" class="btn btn-link">Learn More ⏩</a>
+                    </div>
+                </div>
+            </div>
         </div>
-
-        <h5 class="mt-2">
-            <a href="{% url 'photo_detail' photo.id %}" class="btn btn-link">Learn More ⏩</a>
-        </h5>
-        </li>
-      {% empty %}
+        {% empty %}
         <p>No photos available for this tag.</p>
-      {% endfor %}
-    </ul>
-  </div>
+        {% endfor %}
+    </div>
+</div>
     {% endblock %}
