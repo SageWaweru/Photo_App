@@ -8,15 +8,22 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import logout
 
-def home(request):
-    tags = Tag.objects.all()
+from django.shortcuts import render
+from django.core.exceptions import ObjectDoesNotExist
+from .models import Tag, Photo
 
-    selected_tag = request.GET.get('tag')
+def home(request):
+    tags = Tag.objects.all()  
+    selected_tag = request.GET.get('tag', '')  
+
     if selected_tag:
-        tag = Tag.objects.get(name=selected_tag)
-        photos = Photo.objects.filter(tags=tag)
+        try:
+            tag = Tag.objects.get(name=selected_tag)  
+            photos = Photo.objects.filter(tags=tag)  
+        except ObjectDoesNotExist:
+            photos = Photo.objects.none()  
     else:
-        photos = Photo.objects.all()
+        photos = Photo.objects.all() 
 
     return render(request, 'index.html', {'photos': photos, 'tags': tags})
 
