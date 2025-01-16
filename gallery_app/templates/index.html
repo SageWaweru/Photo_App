@@ -19,7 +19,7 @@
     <div class="row gy-3 ">
         {% for photo in photos %}
         <div class="col-12 col-sm-6 col-lg-4 mb-4">
-            <div style="width: 350px;" class="card shadow">
+            <div style="width: 350px; height: 450px;" class="card shadow">
                 <img src="{{ photo.uploaded_photo.url }}" alt="{{ photo.title }}" style="width: 350px; height: 200px;" class="card-img-top img-fluid">
                 <div class="card-body">
                     <h5 class="card-title">{{ photo.title }}</h5>
