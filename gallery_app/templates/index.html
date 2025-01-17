@@ -4,7 +4,7 @@
 {% if user.is_authenticated %}
 <h2 class="mt-4">Welcome, {{user.username}}</h2>
 {% endif %}
-<form method="get" action="{% url 'index' %}" class="mb-4">
+<form method="get" action="{% url 'index' %}" class="mb-4 mt-4">
     <label for="tag" style="font-size: 1.3rem;">Filter by Tag: </label>
     <select name="tag" id="tag" class="w-25 text-center" style="height: 2.3rem;">
       <option value="">--All Tags--</option>
